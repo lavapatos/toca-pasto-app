@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# 🌱 **TOCA PASTO** 🌱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+¡Bienvenido a la experiencia que revolucionará tu vida social! 🚀  
+¿Cansado de buscar el amor de tu vida o simplemente alguien que no critique tu colección de perdidas en crypto? Tranquilo, hemos creado algo mejor. **TOCA PASTO** no es un simple app... ¡es un portal interdimensional para encontrar a **compañerXXXs de baño no binarios** que compartan tus mismas ganas de sobrevivir a la universidad!
 
-## Get started
+## 😎 **¿Qué es TOCA PASTO?**
 
-1. Install dependencies
+TOCA PASTO no es solo una app, es un **estilo de vida**, un **movimiento social**, una **metodología avanzada de interacción interhumana** que utiliza complejas ventanas de algoritmos (también conocidas como "tu tiempo libre entre clases") para ayudarte a encontrar **amigos, aliados y confidentes**. Aquí no hablamos de "matches". Aquí hablamos de *destinos cruzados entre pasillos y baños unisex*. 🤝
 
-   ```bash
-   npm install
-   ```
+Con TOCA PASTO, podrás:
 
-2. Start the app
+- 🌟 Descubrir a personas que **también olvidaron el proyecto de bases de datos**.
+- 🌿 Conectar con seres humanos que **creen en los descansos existenciales entre una clase y otra**.
+- 🦄 Construir amistades **mágicas** basadas en tu habilidad de socializar sin mencionar el precio del menú universitario.
 
-   ```bash
-    npx expo start
-   ```
+## 🤔 **¿Cómo funciona?**
 
-In the output, you'll find options to open the app in a
+1. **Regístrate** y selecciona tus horarios libres. (Porque sí, somos inclusivos con tu caos académico.)
+2. Indica tu **nivel de necesidad social** (desde "quiero hablar con alguien antes de llorar" hasta "estoy bien pero necesito ser el centro de atención").
+3. Deja que el algoritmo haga su magia. TOCA PASTO detecta afinidades basadas en intereses como:
+   - Qué tan rápido corres para echarte el ramo.
+   - Si eres de los que lleva termos o come colillas de cigarro en la calle.
+   - Y, lo más importante, si sabes **qué pasto sí se puede tocar**.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ **¿Qué necesitas para unirte?**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Una conexión a internet.
+- Ganas de salir de tu zona de confort (o tu cueva de incel).
+- Y sí, ¡ropa cómoda para sentarte en el pasto! 🌿✨ (Por favor limpia tu ropa al menos una vez) 
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 🚀 **¡Descárgalo ahora y toca pasto!**
 
-```bash
-npm run reset-project
-```
+Porque la verdadera conexión humana no ocurre en apps aburridas, sino **cara a cara... o ventana a ventana**. TOCA PASTO es tu excusa perfecta para salir, respirar aire fresco y, quién sabe, encontrar un compañero ideal para tus aventuras académicas.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Disclaimer:
 
-## Learn more
+- No nos hacemos responsables si encuentras amor verdadero.
+- Sí nos hacemos responsables de tu creciente aprecio por el pasto y los baños compartidos.
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+¡Únete al movimiento! 🌱 **Toca Pasto, encuentra amistades.**
+x
