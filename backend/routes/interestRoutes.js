@@ -16,27 +16,21 @@ const pool = mysql.createPool({
     queueLimit: 10
 });
 
-router.get("/carreras",  (req, res) => {
-    pool.query('SELECT c.nombre nombre, f.nombre facultad, c.modalidad modalidad FROM carrera c JOIN facultad f ON c.id_facultad=f.id;', (error, results) => {
+router.get("/intereses", (req, res) => {
+    pool.query('SELECT nombre, topico FROM interes;', (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
         res.json(results);
     });
-});
+})
 
-router.get("/carreras/:id", (req, res) => {
-    pool.query(`
-        SELECT c.nombre nombre, f.nombre facultad, c.modalidad modalidad
-        FROM carrera c JOIN facultad f ON c.id_facultad=f.id
-        WHERE c.id = ?
-        `, req.params.id,
-        (error, results) => {
+//interes-ramo
+router.get("/intereses/:id?", (req, res) => {
+    pool.query('SELECT nombre, topico FROM interes;', (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
         res.json(results);
     });
-});
-
-module.exports = router;
+})
