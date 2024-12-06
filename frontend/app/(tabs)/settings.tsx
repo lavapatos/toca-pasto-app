@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Picker } from '@react-native-picker/picker';
 
 export default function Settings() {
   const router = useRouter();
 
   const [name, setName] = useState('USER_NAME');
   const [career, setCareer] = useState('Ingeniería en Virginidad');
+  const [gender, setGender] = useState('Mujer con Pene');
+  const [rut, setRut] = useState('11091973-K');
 
-  //en teoria aca va lode back
   const handleSaveChanges = () => {
     alert('Cambios hechos');
-    //su tonto mysql
   };
 
   const goBack = () => {
-    router.push('./(tabs)/');
+    router.push('./');
   };
 
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>Ajustes del Perfil</Text>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Rut:</Text>
+        <TextInput
+          style={styles.input}
+          value={rut}
+          onChangeText={setRut}
+          placeholder="Rut"
+          placeholderTextColor="#999"
+        />
+      </View>
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nombre:</Text>
@@ -36,21 +47,45 @@ export default function Settings() {
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Carrera:</Text>
-        <TextInput
-          style={styles.input}
-          value={career}
-          onChangeText={setCareer}
-          placeholder="Escribe tu carrera"
-          placeholderTextColor="#999"
-        />
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={career}
+            style={styles.picker}
+            onValueChange={(itemValue) => setCareer(itemValue)}
+          >
+            <Picker.Item label="Ingeniería en Virginidad" value="Ingeniería en Virginidad" />
+            <Picker.Item label="Carrera2" value="Carrera2" />
+            <Picker.Item label="Carrera3" value="Carrera3" />
+            <Picker.Item label="Carrera4" value="Carrera4" />
+            <Picker.Item label="Carrera5" value="Carrera5" />
+            <Picker.Item label="Carrera6" value="Carrera6" />
+          </Picker>
+        </View>
       </View>
 
-        <View style={styles.buttonContainer}>
-            <Button title="Guardar Cambios" color="#ffd33d" onPress={handleSaveChanges} />
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Género:</Text>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={career}
+            style={styles.picker}
+            onValueChange={(itemValue) => setGender(itemValue)}
+          >
+            <Picker.Item label="Mujer con Vagina" value="Mujer con Vagina" />
+            <Picker.Item label="Mujer con Pene" value="Mujer con Pene" />
+            <Picker.Item label="No Mujer" value="No Mujer" />
+          </Picker>
         </View>
-        <View style={styles.buttonContainer}>
-            <Button title="Volver" color="#ff3333" onPress={goBack} />
+      </View>
+
+      <View style={styles.buttonsRow}>
+        <View style={styles.button}>
+          <Button title="Guardar Cambios" color="#ffd33d" onPress={handleSaveChanges} />
         </View>
+        <View style={styles.button}>
+          <Button title="Volver" color="#ff3333" onPress={goBack} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -80,15 +115,37 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: '#ffd33d',
+    borderColor: '#fff',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
-    color: '#fff',
-    fontSize: 16,
-  },
-  buttonContainer: {
-    marginTop: 20,
+    marginBottom: 10,
     width: '100%',
+    paddingLeft: 10,
+    color: '#000',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+  },
+  buttonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 20,
+  },
+  button: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  pickerContainer: {
+    height: 40,
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  
+  picker: {
+    height: 40,
+    color: '#000',
+    fontSize: 10,
   },
 });

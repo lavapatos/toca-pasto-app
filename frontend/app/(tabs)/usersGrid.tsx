@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet, FlatList, Image } from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
 interface User {
   id: string;
@@ -25,8 +26,21 @@ const users: User[] = [
 ];
 
 export default function UsersGrid() {
+  const router = useRouter();
+
+  const handleNavigate = () => {
+    router.push('/coincidencias');
+  };
+
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Usuarios</Text>
+        <TouchableOpacity onPress={handleNavigate} style={styles.button}>
+          <Text style={styles.buttonText}>Coincidencias</Text>
+        </TouchableOpacity>
+      </View>
+
       <FlatList
         data={users}
         renderItem={({ item }: { item: User }) => (
@@ -48,10 +62,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#25292e',
     padding: 10,
-    //justifyContent: 'center',
   },
-  listContent: {
-    justifyContent: 'space-around',
+  header: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 24,
+  },
+  button: {
+    backgroundColor: '#ffd33d',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 16,
   },
   userCard: {
     flex: 1,
@@ -70,5 +100,8 @@ const styles = StyleSheet.create({
   name: {
     color: '#fff',
     marginTop: 10,
+  },
+  listContent: {
+    justifyContent: 'space-around',
   },
 });
