@@ -6,8 +6,11 @@ const app = express ();
 app.use(express.json());
 
 const careerRoutes = require("./routes/careerRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
+const authRoutes = require("./routes/authRoutes.js");
+const interestRoutes = require("./routes/interestRoutes.js");
 
-app.use('/', careerRoutes);
+app.use('/', careerRoutes, userRoutes, authRoutes, interestRoutes);
 
 app.get('/', (req, res) => {
     res.send('Testeando.');

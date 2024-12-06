@@ -39,4 +39,25 @@ router.get("/carreras/:id", (req, res) => {
     });
 });
 
+router.get("/carreras/zona/:zonaId", (req, res) => {
+    pool.query(`
+        SELECT
+            c.id AS carrera_id,
+            c.nombre AS carrera_nombre,
+            c.modalidad,
+            f.nombre AS facultad_nombre,
+            z.nombre AS zona_nombre
+        FROM carrera c
+        JOIN facultad f ON c.id_facultad = f.id
+        JOIN zona z ON f.id_zona = z.id
+        WHERE z.id = ?
+        `, req.params.zonaId,
+        (error, results) => {
+            if (error) {
+                return res.status(500).send(error.message);
+            }
+            res.json(results);
+        });
+});
+
 module.exports = router;

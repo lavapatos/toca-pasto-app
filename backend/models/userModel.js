@@ -16,20 +16,18 @@ const pool = mysql.createPool({
 });
 
 const findUserByEmail = async (email) => {
-    const result = await pool.query('SELECT * FROM users WHERE correo = $1', [email]);
-    return result.rows[0];
+    const result = await pool.query('SELECT * FROM estudiante WHERE correo = $1', [email]);
+    return result[0];
 };
 
-//EN PROCESO
-const createUser = async (nombre, correo, rut, fecha_nacimiento, genero, carrera, password) => {
+const createUser = async (nombre, correo, password) => {
     console.log(password);
     const hashedPassword = await bcrypt.hash(password, 5);
     const result = await pool.query(
-        'INSERT INTO users (nombre, correo, password, wallet, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-        [nombre, correo, hashedPassword, 0, isAdmin]
+        'INSERT INTO estudiante (nombre, correo, password) VALUES ($1, $2, $3) RETURNING *',
+        [nombre, correo, hashedPassword]
     );
-    const cartResult = await pool.query('INSERT INTO carts (user_id) SELECT id FROM users WHERE correo = $1', [correo]);
-    return result.rows[0];
+    return result[0];
 };
 
 module.exports = { findUserByEmail, createUser };

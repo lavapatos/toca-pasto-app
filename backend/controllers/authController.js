@@ -5,15 +5,12 @@ const bcrypt =  require('bcrypt');
 const register = async (req, res) => {
     const nombre = req.body.nombre;
     const correo = req.body.correo;
-    const genero = req.body.genero;
-    const fecha_nacimiento = req.body.fecha_nacimiento;
-    const carrera = req.body.carrera;
     const password = req.body.password;
     const existingUser = await userModel.findUserByEmail(correo);
     if (existingUser) {
         return res.status(400).send('Correo ya registrado.');
     }
-    const user = await userModel.createUser(nombre, correo, rut, fecha_nacimiento, genero, carrera, password);
+    const user = await userModel.createUser(nombre, correo, password);
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     res.status(302).cookie('token', token, {
         httpOnly: true,
