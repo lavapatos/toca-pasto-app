@@ -13,6 +13,7 @@ export default function TabLayout() {
     },
     headerShadowVisible: false,
     headerTintColor: '#fff',
+    headerShown: false, //descomentar para que no se vea niuna wea arriba
     tabBarStyle: {
     backgroundColor: '#25292e',
     },
@@ -22,7 +23,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Inicio',
+          title: 'Mi cuenta',
+          //headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
@@ -31,7 +33,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="usersGrid"
         options={{
-          title: 'Usuarios',
+          title: 'Enanos hot',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'people' : 'people-outline'} color={color} size={24} />
           ),
@@ -46,6 +48,17 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="user"
+        options={{
+          title: 'user',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'people-circle' : 'people-circle-outline'} color={color} size={24}/>
+          ),
+          //tabBarButton: () => null, //quiero borrar la wea pero no cacho, calmao
+        }}
+      />
     </Tabs>
+    
   );
 }

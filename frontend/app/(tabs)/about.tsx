@@ -1,6 +1,10 @@
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Button, Linking } from 'react-native';
 
 export default function AboutScreen() {
+  const handleDonatePress = () => {
+    Linking.openURL('https://donate.unrwa.org/monthly/~my-donation');
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Acerca de TocaPasto</Text>
@@ -10,6 +14,10 @@ export default function AboutScreen() {
       <Text style={styles.text}>
         Olvídate de las típicas apps: aquí lo que importa es pasar un buen rato y hacer conexiones auténticas mientras navegas por el día a día universitario.
       </Text>
+
+      <View style={styles.buttonContainer}>
+        <Button title="Donar" color="#FFD33D" onPress={handleDonatePress} />
+      </View>
     </ScrollView>
   );
 }
@@ -35,5 +43,10 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginBottom: 15,
     textAlign: 'justify',
+  },
+  buttonContainer: {
+    marginTop: 20,
+    width: '100%',  
+    paddingHorizontal: 20,
   },
 });

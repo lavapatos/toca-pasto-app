@@ -1,30 +1,19 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
+import React from 'react';
+import UserProfile from './user';
 
-export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>TocaPasto</Text>
-      <Link href="/(tabs)/usersGrid" style={styles.button}>
-        Ver perfiles
-      </Link>
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#25292e',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#fff',
-  },
-  button: {
-    fontSize: 20,
-    textDecorationLine: 'underline',
-    color: '#fff',
-  },
-});
+/*
+en teoría esto lo hice para que acá se llame
+al usuario con las credenciales del que está
+logeado, el user.tsx es un perfil de usuario
+random que en realidad también se usa aquí
+pero los separé para que cuando la persona
+logeada vea otro usuario, lo cargue con esa
+plantilla
+*/
+const index = () => {
+  return <UserProfile/>
+};
+
+export default index;
+
