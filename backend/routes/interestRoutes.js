@@ -26,11 +26,13 @@ router.get("/intereses", (req, res) => {
 })
 
 //interes-ramo
-router.get("/intereses/:id?", (req, res) => {
-    pool.query('SELECT nombre, topico FROM interes;', (error, results) => {
+router.get("/intereses/:id", (req, res) => {
+    pool.query('SELECT i.nombre, i.topico FROM interes i JOIN asignatura_interes r ON r.id_interes = i.id AND r.id_asignatura = ?;', req.params.id, (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
         res.json(results);
     });
 })
+
+module.exports = router;
