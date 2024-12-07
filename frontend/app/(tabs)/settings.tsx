@@ -10,6 +10,7 @@ export default function Settings() {
   const [career, setCareer] = useState('Ingeniería en Virginidad');
   const [gender, setGender] = useState('Mujer con Pene');
   const [rut, setRut] = useState('11091973-K');
+  const [facultad, setFacultad] = useState('FIC');
 
   const handleSaveChanges = () => {
     alert('Cambios hechos');
@@ -43,6 +44,24 @@ export default function Settings() {
           placeholder="Escribe tu nombre"
           placeholderTextColor="#999"
         />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Facultad:</Text>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={career}
+            style={styles.picker}
+            onValueChange={(itemValue) => setCareer(itemValue)}
+          >
+            <Picker.Item label="FIC" value="FIC" />
+            <Picker.Item label="PSICO" value="PSICO" />
+            <Picker.Item label="Facultad3" value="Facultad3" />
+            <Picker.Item label="Facultad4" value="Facultad4" />
+            <Picker.Item label="Facultad5" value="Facultad5" />
+            <Picker.Item label="Facultad6" value="Facultad6" />
+          </Picker>
+        </View>
       </View>
 
       <View style={styles.inputContainer}>

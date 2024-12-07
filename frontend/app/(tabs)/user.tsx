@@ -59,6 +59,12 @@ export default function UserProfile() {
         <Text style={styles.details}>Género: Lírico</Text>
       </View>
 
+      <View style={styles.descriptionBox}>
+        <Text style={styles.descriptionText}>
+          DESCRIPCION BLA BLA BLA BLA BLA
+        </Text>
+      </View>
+
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
           <Button title="Horario" color="#ffd33d" onPress={handleSchedule} />
@@ -117,5 +123,18 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '40%',
+  },
+  descriptionBox: {
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+    width: '100%',
+    marginTop: 20,
+  },
+  descriptionText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
