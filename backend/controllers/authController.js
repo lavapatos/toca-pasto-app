@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt =  require('bcrypt');
 
 const register = async (req, res) => {
+    console.log("Recibiendo solicitud de registro...");
+    
     const nombre = req.body.nombre;
     const correo = req.body.correo;
     const password = req.body.password;

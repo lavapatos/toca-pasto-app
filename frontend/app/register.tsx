@@ -4,15 +4,36 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); //confirmar todo
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (email && password && confirmPassword) {
       if (password !== confirmPassword) {
         alert('tus contraseñas hacen menos match que tu con el resto de seres humanos');
       } else {
-        //y aquí iría el backend si tan solo tuviera uno
-        alert('Muy bien, sabes escribir');
+        try {
+          const response = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              correo: email,
+              password: password,
+              nombre: 'name',
+            }),
+          });
+
+          const data = await response.text();
+
+          if (response.status === 302) {
+            alert('Muy bien, sabes escribir');
+          } else {
+            alert(data);
+          }
+        } catch (error) {
+          alert('Error con el server :((');
+        }
       }
     } else {
       alert('Yapo weon llena todos los campos');

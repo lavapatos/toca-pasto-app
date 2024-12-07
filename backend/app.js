@@ -3,6 +3,12 @@ const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const app = express ();
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'http://localhost:8081',
+    credentials: true,
+}));
 app.use(express.json());
 
 const careerRoutes = require("./routes/careerRoutes.js");
@@ -21,5 +27,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Server Listening on http://localhost:" + PORT);
+    console.log("Server TULIFICADO EN http://localhost:" + PORT);
 });
