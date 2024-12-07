@@ -16,6 +16,7 @@ const pool = mysql.createPool({
     queueLimit: 10
 });
 
+//Todas las carreras
 router.get("/carreras",  (req, res) => {
     pool.query('SELECT c.nombre nombre, f.nombre facultad, c.modalidad modalidad FROM carrera c JOIN facultad f ON c.id_facultad=f.id;', (error, results) => {
         if (error) {
@@ -25,6 +26,7 @@ router.get("/carreras",  (req, res) => {
     });
 });
 
+//Carrera por id
 router.get("/carreras/:id", (req, res) => {
     pool.query(`
         SELECT c.nombre nombre, f.nombre facultad, c.modalidad modalidad
@@ -39,6 +41,7 @@ router.get("/carreras/:id", (req, res) => {
     });
 });
 
+//Carreras por zona
 router.get("/carreras/zona/:zonaId", (req, res) => {
     pool.query(`
         SELECT
@@ -52,6 +55,26 @@ router.get("/carreras/zona/:zonaId", (req, res) => {
         JOIN zona z ON f.id_zona = z.id
         WHERE z.id = ?
         `, req.params.zonaId,
+        (error, results) => {
+            if (error) {
+                return res.status(500).send(error.message);
+            }
+            res.json(results);
+        });
+});
+
+//Carreras por facultad
+router.get("/carreras/facultad/:facId", (req, res) => {
+    pool.query(`
+        SELECT
+            c.id AS carrera_id,
+            c.nombre AS carrera_nombre,
+            c.modalidad,
+            f.nombre AS facultad_nombre,
+        FROM carrera c
+        JOIN facultad f ON c.id_facultad = f.id
+        WHERE f.id = ?
+        `, req.params.facId,
         (error, results) => {
             if (error) {
                 return res.status(500).send(error.message);

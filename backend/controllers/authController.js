@@ -25,7 +25,7 @@ const login = async (req, res) => {
     const user = await userModel.findUserByEmail(correo);
     console.log('Usuario:', user);
     console.log('Contraseña que chantaste:', password);
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.clave))) {
         return res.status(401).send('Credenciales no válidas.');
     }
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);

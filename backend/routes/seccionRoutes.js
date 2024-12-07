@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
+const {json} = require("express");
 
 dotenv.config();
 
@@ -18,9 +19,9 @@ const pool = mysql.createPool({
 
 router.use(express.json());
 
-//Todos los intereses
-router.get("/intereses", (req, res) => {
-    pool.query('SELECT nombre, topico FROM interes;', (error, results) => {
+//Secciones de un ramo
+router.get("/asignatura/:id/secciones", (req, res) => {
+    pool.query('SELECT numero, profesor, sala FROM seccion WHERE id_asignatura = ?;', req.params.id, (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
@@ -28,19 +29,9 @@ router.get("/intereses", (req, res) => {
     });
 });
 
-//Intereses de un ramo
-router.get("/intereses/:id", (req, res) => {
-    pool.query('SELECT i.nombre, i.topico FROM interes i JOIN asignatura_interes r ON r.id_interes = i.id WHERE r.id_asignatura = ?;', req.params.id, (error, results) => {
-        if (error) {
-            return res.status(500).send(error.message);
-        }
-        res.json(results);
-    });
-});
-
-//Intereses de un topico
-router.get("/intereses/topico", (req, res) => {
-    pool.query('SELECT nombre, topico FROM interes i WHERE topico = ?', req.body.topico, (error, results) => {
+//Bloques de una seccion
+router.get("/seccion/:id", (req, res) => {
+    pool.query('SELECT b.dia, b.hora_inicio, b.hora_fin FROM bloque JOIN seccion_bloque sBl ON sBl.id_seccion = ?;', req.params.id, (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
