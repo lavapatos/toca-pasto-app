@@ -61,7 +61,6 @@ router.post("/modifyPerfil", authMiddleware.authenticateUser, (req, res) => {
             if (error) {
                 return res.status(500).send(error.message);
             }
-            res.json(results);
         });
     });
 });
@@ -87,7 +86,6 @@ router.post("/perfil/intereses/:inId", authMiddleware.authenticateUser, (req, re
         if (error) {
             return res.status(500).send(error.message);
         }
-        res.json(results);
     });
 });
 
@@ -103,7 +101,6 @@ router.delete("/perfil/intereses/:inId", authMiddleware.authenticateUser, (req, 
         if (error) {
             return res.status(500).send(error.message);
         }
-        res.json(results);
     });
 });
 
@@ -134,7 +131,6 @@ router.post("/perfil/seccion/:seId", authMiddleware.authenticateUser, (req, res)
         if (error) {
             return res.status(500).send(error.message);
         }
-        res.json(results);
     });
 });
 
@@ -149,7 +145,6 @@ router.delete("/perfil/seccion/:seId", authMiddleware.authenticateUser, (req, re
         if (error) {
             return res.status(500).send(error.message);
         }
-        res.json(results);
     });
 });
 
@@ -161,6 +156,33 @@ router.post("/matches/usuario", authMiddleware.authenticateUser, (req, res) => {
         if (error) {
             return res.status(500).send(error.message);
         }
+    });
+});
+
+//Matches del usuario
+router.get("/matches/usuario", authMiddleware.authenticateUser, (req, res) => {
+    const userId = req.userId;
+    pool.query(`
+        SELECT 
+            e2.nombre,
+            eMa.tipo_match
+        FROM estudiante_match eMa
+        JOIN estudiante e2
+        ON eMa.id_estudiante2 = e2.id
+        WHERE eMa.id_estudiante1 = ?
+        UNION
+        SELECT 
+            e1.nombre,
+            eMa.tipo_match
+        FROM estudiante_match eMa
+        JOIN estudiante e1
+        ON eMa.id_estudiante1 = e1.id
+        WHERE eMa.id_estudiante2 = ?;
+    `, [userId, userId], (error, results) => {
+        if (error) {
+            return res.status(500).send(error.message);
+        }
+        res.json(results);
     });
 });
 
