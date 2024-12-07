@@ -36,7 +36,7 @@ router.get("/asignaturas/carrera/:carId", (req, res) => {
         FROM asignatura a
         JOIN carrera_asignatura cAs ON cAs.id_asignatura = a.id
         JOIN carrera c ON c.id = cAs.id_carrera
-        WHERE c.id = ?;`, req.params.carId, (error, results) => {
+        WHERE c.id = ?;`, [req.params.carId], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
@@ -50,7 +50,7 @@ router.get("/asignaturas/interes/:inId", (req, res) => {
         SELECT a.nombre, a.departamento, a.semestre, a.es_cfg
         FROM asignatura a
         JOIN asignatura_interes aIn ON aIn.id_asignatura = a.id
-        WHERE aIn.id = ?;`, req.params.inId, (error, results) => {
+        WHERE aIn.id = ?;`, [req.params.inId], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
@@ -63,7 +63,7 @@ router.get("/asignaturas/dep", (req, res) => {
     pool.query(`
         SELECT a.nombre, a.departamento, a.semestre, a.es_cfg
         FROM asignatura a
-        WHERE a.departamento = ?;`, req.body.departamento, (error, results) => {
+        WHERE a.departamento = ?;`, [req.body.departamento], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }

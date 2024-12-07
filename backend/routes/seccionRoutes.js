@@ -21,7 +21,7 @@ router.use(express.json());
 
 //Secciones de un ramo
 router.get("/asignatura/:id/secciones", (req, res) => {
-    pool.query('SELECT numero, profesor, sala FROM seccion WHERE id_asignatura = ?;', req.params.id, (error, results) => {
+    pool.query('SELECT numero, profesor, sala FROM seccion WHERE id_asignatura = ?;', [req.params.id], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
@@ -31,7 +31,7 @@ router.get("/asignatura/:id/secciones", (req, res) => {
 
 //Bloques de una seccion
 router.get("/seccion/:id", (req, res) => {
-    pool.query('SELECT b.dia, b.hora_inicio, b.hora_fin FROM bloque JOIN seccion_bloque sBl ON sBl.id_seccion = ?;', req.params.id, (error, results) => {
+    pool.query('SELECT b.dia, b.hora_inicio, b.hora_fin FROM bloque JOIN seccion_bloque sBl ON sBl.id_seccion = ?;', [req.params.id], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }

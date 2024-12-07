@@ -32,7 +32,7 @@ router.get("/carreras/:id", (req, res) => {
         SELECT c.nombre nombre, f.nombre facultad, c.modalidad modalidad
         FROM carrera c JOIN facultad f ON c.id_facultad=f.id
         WHERE c.id = ?
-        `, req.params.id,
+        `, [req.params.id],
         (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
@@ -54,7 +54,7 @@ router.get("/carreras/zona/:zonaId", (req, res) => {
         JOIN facultad f ON c.id_facultad = f.id
         JOIN zona z ON f.id_zona = z.id
         WHERE z.id = ?
-        `, req.params.zonaId,
+        `, [req.params.zonaId],
         (error, results) => {
             if (error) {
                 return res.status(500).send(error.message);
@@ -74,7 +74,7 @@ router.get("/carreras/facultad/:facId", (req, res) => {
         FROM carrera c
         JOIN facultad f ON c.id_facultad = f.id
         WHERE f.id = ?
-        `, req.params.facId,
+        `, [req.params.facId],
         (error, results) => {
             if (error) {
                 return res.status(500).send(error.message);

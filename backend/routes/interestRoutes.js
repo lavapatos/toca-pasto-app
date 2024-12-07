@@ -30,7 +30,7 @@ router.get("/intereses", (req, res) => {
 
 //Intereses de un ramo
 router.get("/intereses/:id", (req, res) => {
-    pool.query('SELECT i.nombre, i.topico FROM interes i JOIN asignatura_interes r ON r.id_interes = i.id WHERE r.id_asignatura = ?;', req.params.id, (error, results) => {
+    pool.query('SELECT i.nombre, i.topico FROM interes i JOIN asignatura_interes r ON r.id_interes = i.id WHERE r.id_asignatura = ?;', [req.params.id], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }
@@ -40,7 +40,17 @@ router.get("/intereses/:id", (req, res) => {
 
 //Intereses de un topico
 router.get("/intereses/topico", (req, res) => {
-    pool.query('SELECT nombre, topico FROM interes i WHERE topico = ?', req.body.topico, (error, results) => {
+    pool.query('SELECT nombre, topico FROM interes i WHERE topico = ?', [req.body.topico], (error, results) => {
+        if (error) {
+            return res.status(500).send(error.message);
+        }
+        res.json(results);
+    });
+});
+
+//Intereses de un usuario
+router.get("/intereses/:userId", (req, res) => {
+    pool.query('SELECT nombre, topico FROM interes i JOIN estudiante_interes eIn ON eIn.id_interes = i.id WHERE eIn.id_estudiante = ?', [req.params.userId], (error, results) => {
         if (error) {
             return res.status(500).send(error.message);
         }

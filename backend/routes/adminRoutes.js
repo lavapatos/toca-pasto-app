@@ -28,3 +28,5 @@ router.get("/usuarios", authMiddleware.authenticateUser, authMiddleware.isAdmin,
         res.json(results);
     });
 });
+
+module.exports = router;
