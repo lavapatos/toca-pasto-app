@@ -159,6 +159,17 @@ router.post("/matches/usuario", authMiddleware.authenticateUser, (req, res) => {
     });
 });
 
+//Crear ventanas posibles
+router.post("/ventanas/usuario", authMiddleware.authenticateUser, (req, res) => {
+    const userId = req.userId;
+    //Documentado en carpeta /scriptsMySQL-ejemplo
+    pool.query('CALL crearVentanas(?)', [userId], (error, results) => {
+        if (error) {
+            return res.status(500).send(error.message);
+        }
+    });
+});
+
 //Matches del usuario
 router.get("/matches/usuario", authMiddleware.authenticateUser, (req, res) => {
     const userId = req.userId;

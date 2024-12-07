@@ -1,0 +1,27 @@
+-- Limpiar campo id_carrera cuando se elimina una carrera
+DELIMITER //
+
+CREATE TRIGGER limpiarCarrera
+AFTER DELETE ON carrera
+FOR EACH ROW
+BEGIN
+    UPDATE estudiante
+    SET id_carrera = NULL
+    WHERE id_carrera = OLD.id;
+END //
+
+DELIMITER ;
+
+-- Limpiar carreras cuando se elimina una facultad
+DELIMITER //
+
+CREATE TRIGGER limpiarFacultad
+AFTER DELETE ON facultad
+FOR EACH ROW
+BEGIN
+    DELETE FROM carrera
+    WHERE id_facultad = OLD.id;
+END //
+
+DELIMITER ;
+

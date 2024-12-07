@@ -37,3 +37,21 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE PROCEDURE crearVentanas(IN estudiante_id BIGINT)
+BEGIN
+    INSERT INTO ventana (id_estudiante, id_bloque)
+    SELECT
+        estudiante_id AS id_estudiante,
+        b.id AS id_bloque
+    FROM
+        bloque b
+    WHERE
+        b.id NOT IN (SELECT id_bloque FROM seccion_bloque)
+    AND
+        estudiante_id NOT IN (SELECT id_estudiante FROM ventana WHERE id_bloque = b.id);
+END $$
+
+DELIMITER ;
+
