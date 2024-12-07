@@ -153,4 +153,15 @@ router.delete("/perfil/seccion/:seId", authMiddleware.authenticateUser, (req, re
     });
 });
 
+//Crear matches posibles
+router.post("/matches/usuario", authMiddleware.authenticateUser, (req, res) => {
+    const userId = req.userId;
+    //Documentado en carpeta /scriptsMySQL-ejemplo
+    pool.query('CALL crearMatches(?)', [userId], (error, results) => {
+        if (error) {
+            return res.status(500).send(error.message);
+        }
+    });
+});
+
 module.exports = router;
