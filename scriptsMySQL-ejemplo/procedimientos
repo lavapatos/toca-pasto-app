@@ -1,0 +1,39 @@
+DELIMITER $$
+CREATE PROCEDURE crearMatches(IN estudianteId BIGINT UNSIGNED)
+BEGIN
+    -- Match por interes
+    INSERT INTO estudiante_match (id_estudiante1, id_estudiante2, tipo_match)
+    SELECT
+        eIn1.id_estudiante AS id_estudiante1,
+        eIn2.id_estudiante AS id_estudiante2,
+        'interes' AS tipo_match
+    FROM estudiante_interes eIn1
+    JOIN estudiante_interes eIn2
+      ON eIn1.id_interes = eIn2.id_interes
+    WHERE eIn1.id_estudiante = estudianteId
+      AND eIn2.id_estudiante != eIn1.id_estudiante
+      AND NOT EXISTS (
+          SELECT 1 FROM estudiante_match eMa
+          WHERE (eMa.id_estudiante1 = eIn1.id_estudiante AND eMa.id_estudiante2 = eIn2.id_estudiante)
+            OR (eMa.id_estudiante1 = eIn2.id_estudiante AND eMa.id_estudiante2 = eIn1.id_estudiante)
+      );
+
+    -- Match por ventana
+    INSERT INTO estudiante_match (id_estudiante1, id_estudiante2, tipo_match)
+    SELECT
+        v1.id_estudiante AS id_estudiante1,
+        v2.id_estudiante AS id_estudiante2,
+        'ventana' AS tipo_match
+    FROM ventana v1
+    JOIN ventana v2
+      ON v1.id_bloque = v2.id_bloque
+    WHERE v1.id_estudiante = estudianteId
+      AND v2.id_estudiante != v1.id_estudiante
+      AND NOT EXISTS (
+          SELECT 1 FROM estudiante_match eMa
+          WHERE (eMa.id_estudiante1 = v1.id_estudiante AND eMa.id_estudiante2 = v2.id_estudiante)
+            OR (eMa.id_estudiante1 = v2.id_estudiante AND eMa.id_estudiante2 = v1.id_estudiante)
+      );
+END $$
+DELIMITER ;
+
