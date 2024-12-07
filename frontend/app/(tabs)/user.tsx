@@ -58,6 +58,10 @@ export default function UserProfile() {
         <Text style={styles.details}>Sexo: 0%</Text>
         <Text style={styles.details}>Género: Lírico</Text>
       </View>
+      <View style={styles.rowContainer}>
+        <Text style={styles.details}>Relación: Deseperado</Text>
+        <Text style={styles.details}>Interés: Humanidades</Text>
+      </View>
 
       <View style={styles.descriptionBox}>
         <Text style={styles.descriptionText}>
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
   details: {
     color: '#fff',
     fontSize: 16,
-    marginHorizontal: 22,
+    marginHorizontal: 10,
   },
   buttonContainer: {
     marginTop: 20,
